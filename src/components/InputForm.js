@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addNote, setEditIndex } from "../actions/action";
+import { addNote, editNote, setEditIndex } from "../actions/action";
+import "../styles/styles.css";
 
-function InputForm({ addNote, editIndex, setEditIndex, notes }) {
+function InputForm({ addNote, editNote, editIndex, setEditIndex, notes }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  // whenever these is an edit, added new note
   useEffect(() => {
     if (editIndex !== null && notes.length > 0) {
       const { title: noteTitle, description: noteDescription } =
@@ -26,12 +26,11 @@ function InputForm({ addNote, editIndex, setEditIndex, notes }) {
       if (editIndex === null) {
         addNote({ title, description });
       } else {
-        const updatedNotes = [...notes];
-        updatedNotes[editIndex] = { title, description };
+        editNote(editIndex, { title, description });
         setEditIndex(null);
-        addNote(updatedNotes);
       }
-      // clearing after addding/editing
+
+      // clearing the fields after adding/editing
       setTitle("");
       setDescription("");
     }
@@ -61,4 +60,6 @@ const mapStateToProps = (state) => ({
   editIndex: state.editIndex,
 });
 
-export default connect(mapStateToProps, { addNote, setEditIndex })(InputForm);
+export default connect(mapStateToProps, { addNote, editNote, setEditIndex })(
+  InputForm
+);

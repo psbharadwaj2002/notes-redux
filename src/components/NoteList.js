@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import "../styles/styles.css";
 import { deleteNote, setEditIndex } from "../actions/action";
 import edit from "../images/edit.png";
 import deleteimg from "../images/delete.png";
-import "../styles/styles.css";
 
 function NoteList({ notes, deleteNote, setEditIndex }) {
   return (

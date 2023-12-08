@@ -3,6 +3,11 @@ export const addNote = (note) => ({
   payload: note,
 });
 
+export const editNote = (index, note) => ({
+  type: "EDIT_NOTE",
+  payload: { index, note },
+});
+
 export const deleteNote = (index) => ({
   type: "DELETE_NOTE",
   payload: index,

@@ -10,6 +10,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         notes: [...state.notes, action.payload],
       };
+    case "EDIT_NOTE":
+      const updatedNotes = [...state.notes];
+      updatedNotes[action.payload.index] = action.payload.note;
+      return {
+        ...state,
+        notes: updatedNotes,
+        editIndex: null,
+      };
     case "DELETE_NOTE":
       return {
         ...state,
